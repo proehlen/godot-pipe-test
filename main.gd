@@ -20,7 +20,6 @@ func _ready():
 	error_pipe = info["stderr"]
 	thread = Thread.new()
 	thread.start(_thread_func)
-	get_window().close_requested.connect(clean_func)
 	find_child("InputLine").grab_focus()
 
 func _add_error(message):
@@ -72,6 +71,7 @@ func _on_input_line_text_submitted(new_text: String) -> void:
 	_send_message(new_text)
 	
 func _quit():
+	clean_func()
 	get_tree().quit() 
 
 func _notification(what):
