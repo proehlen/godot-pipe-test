@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdfkjyjn1i2i2"]
+
+[ext_resource type="Script" uid="uid://gw0agd17iplw" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Messages" type="TextEdit" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+theme_override_colors/background_color = Color(0, 0.132778, 0.135971, 1)
+editable = false
+
+[node name="InputContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer/InputContainer"]
+layout_mode = 2
+focus_mode = 0
+text = ">"
+flat = true
+
+[node name="InputLine" type="LineEdit" parent="HBoxContainer/VBoxContainer/InputContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter 'ping' or 'quit' here."
+keep_editing_on_text_submit = true
+emoji_menu_enabled = false
+
+[node name="ExitButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Exit"
+
+[connection signal="text_submitted" from="HBoxContainer/VBoxContainer/InputContainer/InputLine" to="." method="_on_input_line_text_submitted"]
+[connection signal="pressed" from="HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
